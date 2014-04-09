@@ -1,6 +1,8 @@
 /**
- * TODO - your comments here
- */
+* Name: Christopher Nies
+* ID: A11393577
+* LOGIN: cs12sfl
+*/
 
 import java.util.*;
 public class MyLinkedList<E> extends AbstractList<E> {

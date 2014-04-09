@@ -1,3 +1,8 @@
+/**
+* Name: Christopher Nies
+* ID: A11393577
+* LOGIN: cs12sfl
+*/
 import junit.framework.* ;
 import java.util.LinkedList;
 import java.util.ListIterator;
