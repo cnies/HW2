@@ -1,236 +1,330 @@
 /**
-* Name: Christopher Nies
-* ID: A11393577
-* LOGIN: cs12sfl
-*/
+ * Name: Christopher Nies
+ * ID: A11393577
+ * LOGIN: cs12sfl
+ */
 
 import java.util.*;
 public class MyLinkedList<E> extends AbstractList<E> {
 
-	private int nelems;
-	private Node head;
-	private Node tail;
+  private int nelems;
+  private Node head;
+  private Node tail;
 
-	protected class Node {
-		E data;
-		Node next;
-		Node prev;
+  protected class Node {
+    E data;
+    Node next;
+    Node prev;
 
-		/** Constructor to create singleton Node */
-		public Node(E element)
-		{
-		}
-		/** Constructor to create singleton link it between previous and next 
-	 	*   @param element Element to add, can be null
-	 	*   @param prevNode predecessor Node, can be null
-	 	*   @param nextNode successor Node, can be null 
-	 	*/
-			public Node(E element, Node prevNode, Node nextNode)
-		{
-		}
-		/** Remove this node from the link. Update previous and next nodes */
-		public void remove()
-		{
-		}
-		/** Set the previous node in the list
-		 *  @param p new previous node
-		 */
-		public void setPrev(Node p)
-		{
-		}
-		/** Set the next node in the list
-		 *  @param n new next node
-		 */
-		public void setNext(Node n)
-		{
-		}
-		   
-		/** Set the element 
-		 *  @param e new element 
-		 */
-		public void setElement(E e)
-		{
-		}
-		/** Accessor to get the next Node in the list */
-		public Node getNext()
-		{
-            return (Node) null; // XXX-CHANGE-XXX
-		}
-		/** Accessor to get the prev Node in the list */
-		public Node getPrev()
-		{
-            return (Node) null; // XXX-CHANGE-XXX
-		} 
-		/** Accessor to get the Nodes Element */
-		public E getElement()
-		{
-            return (E) null; // XXX-CHANGE-XXX
-		} 
-	}
+    /** Constructor to create singleton Node */
+    public Node(E element)
+    {
+      this.data = element;
+      this.next = null;
+      this.prev = null;
+    }
+    /** Constructor to create singleton link it between previous and next 
+     *   @param element Element to add, can be null
+     *   @param prevNode predecessor Node, can be null
+     *   @param nextNode successor Node, can be null 
+     */
+    public Node(E element, Node prevNode, Node nextNode)
+    {
+      this.data = element;
+      this.next = nextNode;
+      this.prev = prevNode;
+    }
+    /** Remove this node from the link. Update previous and next nodes */
+    public void remove()
+    {
+      this.next = null;
+      this.prev = null;  
+    }
+    /** Set the previous node in the list
+     *  @param p new previous node
+     */
+    public void setPrev(Node p)
+    {
+      this.prev = p;
+    }
+    /** Set the next node in the list
+     *  @param n new next node
+     */
+    public void setNext(Node n)
+    {
+      this.next = n;
+    }
 
-    /** ListIterator implementation */ 
-	protected class MyListIterator implements ListIterator<E> {
+    /** Set the element 
+     *  @param e new element 
+     */
+    public void setElement(E e)
+    {
+      this.data = e;
+    }
+    /** Accessor to get the next Node in the list */
+    public Node getNext()
+    {
+      return this.next;
+    }
+    /** Accessor to get the prev Node in the list */
+    public Node getPrev()
+    {
+      return this.prev;
+    } 
+    /** Accessor to get the Nodes Element */
+    public E getElement()
+    {
+      return this.data;
+    } 
+  }
 
-        private boolean forward;
-        private boolean canRemove;
-        private Node left,right; // Cursor sits between these two nodes
-        private int idx;        // Tracks current position. what next() would
-                                // return 
-        public MyListIterator()
-        {
-        }
-		@Override
-		public void add(E e) throws  NullPointerException
-		{
-		}
-		@Override
-		public boolean hasNext()
-		{
-            return false; // XXX-CHANGE-XXX
-		}
+  /** ListIterator implementation */ 
+  protected class MyListIterator implements ListIterator<E> {
 
-		@Override
-		public boolean hasPrevious()
-		{
-            return false; // XXX-CHANGE-XXX
-		}
-		@Override
-		public E next() throws NoSuchElementException
-		{
-            return (E) null;  // XXX-CHANGE-XXX
-		}
-		@Override
-		public int nextIndex()
-		{
-            return 0; // XXX-CHANGE-XXX
-		}
-		@Override
-		public E previous() throws NoSuchElementException
-		{
-            return (E) null; // XXX-CHANGE-XXX
-		}
-
-		@Override
-		public int previousIndex()
-		{
-            return 0;  // XXX-CHANGE-XXX
-		}
-		@Override
-		public void remove() throws IllegalStateException
-		{
-		}
-		@Override
-		public void set(E e) throws NullPointerException
-		{
-		}
-
-	}
-
-
-	//  Implementation of the MyLinkedList Class
-
-
-    /** Only 0-argument constructor is define */
-    public MyLinkedList()
+    private boolean forward;
+    private boolean canRemove;
+    private Node left,right; // Cursor sits between these two nodes
+    private int idx;        // Tracks current position. what next() would
+    // return 
+    public MyListIterator()
     {
     }
-	@Override
-	public int size()
-	{
-	    // need to implement the size method
-	    return 0; // XXX-CHANGE-XXX 
-	}
+    @Override
+      public void add(E e) throws  NullPointerException
+      {
+      }
+    @Override
+      public boolean hasNext()
+      {
+        return false; // XXX-CHANGE-XXX
+      }
 
-	@Override
-	public E get(int index) throws IndexOutOfBoundsException
-	{
+    @Override
+      public boolean hasPrevious()
+      {
+        return false; // XXX-CHANGE-XXX
+      }
+    @Override
+      public E next() throws NoSuchElementException
+      {
         return (E) null;  // XXX-CHANGE-XXX
-	}
+      }
+    @Override
+      public int nextIndex()
+      {
+        return 0; // XXX-CHANGE-XXX
+      }
+    @Override
+      public E previous() throws NoSuchElementException
+      {
+        return (E) null; // XXX-CHANGE-XXX
+      }
 
-	@Override
+    @Override
+      public int previousIndex()
+      {
+        return 0;  // XXX-CHANGE-XXX
+      }
+    @Override
+      public void remove() throws IllegalStateException
+      {
+      }
+    @Override
+      public void set(E e) throws NullPointerException
+      {
+      }
+
+  }
+
+
+  //  Implementation of the MyLinkedList Class
+
+
+  /** Only 0-argument constructor is define */
+  public MyLinkedList()
+  {
+    this.head= new Node(null, null, this.tail); 
+    this.tail= new Node(null, this.head, null);
+    this.head.setNext(this.tail);
+    this.nelems = 0;
+  }
+  @Override
+    public int size()
+    {
+      // need to implement the size method
+      return nelems;  
+    }
+
+  @Override
+    public E get(int index) throws IndexOutOfBoundsException
+    {
+      Node toCheck = this.getNth(index);
+      return toCheck.getElement(); 
+    }
+
+  @Override
     /** Add an element to the list 
      * @param index  where in the list to add
      * @param data data to add
      * @throws IndexOutOfBoundsException
      * @throws NullPointerException
      */ 
-	public void add(int index, E data) 
-        throws IndexOutOfBoundsException,NullPointerException
-	{
-	}
-    /** Add an element to the end of the list 
-     * @param data data to add
-     * @throws NullPointerException
-     */ 
-    public boolean add(E data) throws NullPointerException
+    public void add(int index, E data) 
+    throws IndexOutOfBoundsException,NullPointerException
     {
-        return true; // XXX-CHANGE-XXX
+      if (index<0 || index>this.nelems)
+        throw new IndexOutOfBoundsException();
+      if (data == null)
+        throw new NullPointerException();
+      if (index == this.nelems){
+        add(data);
+        return;
+      }
+      Node toShift = this.getNth(index);
+      Node newNode = new Node(data, toShift.getPrev(), toShift);
+      toShift.getPrev().setNext(newNode);
+      toShift.setPrev(newNode);
+      this.nelems++;
     }
 
-    /** Set the element at an index in the list 
-     * @param index  where in the list to add
-     * @param data data to add
-     * @return element data added
-     * @throws IndexOutOfBoundsException
-     * @throws NullPointerException
-     */ 
-	public E set(int index, E data) 
-        throws IndexOutOfBoundsException,NullPointerException
-	{
-        return (E) null; // XXX-CHANGE-XXX
-	}
+  /** Add an element to the end of the list 
+   * @param data data to add
+   * @throws NullPointerException
+   */ 
+  public boolean add(E data) throws NullPointerException
+  {
+    if (data == null)
+      throw new NullPointerException();
+    Node newNode = new Node(data,this.tail.getPrev(), this.tail);
+    this.tail.getPrev().setNext(newNode);
+    this.tail.setPrev(newNode);
+    this.nelems++;
+    return true; 
+  }
 
-    /** Remove the element at an index in the list 
-     * @param index  where in the list to add
-     * @return element the data found
-     * @throws IndexOutOfBoundsException
-     */ 
-    public E remove(int index) throws IndexOutOfBoundsException
+  /** Set the element at an index in the list 
+   * @param index  where in the list to add
+   * @param data data to add
+   * @return element data added
+   * @throws IndexOutOfBoundsException
+   * @throws NullPointerException
+   */ 
+  public E set(int index, E data) 
+    throws IndexOutOfBoundsException,NullPointerException
     {
-        return (E) null; // XXX-CHANGE-XXX
+      if (index<0 || index>=this.nelems)
+        throw new IndexOutOfBoundsException();
+      if (data == null)
+        throw new NullPointerException();
+      Node toChange = this.getNth(index);
+      toChange.setElement(data);
+      return toChange.getElement(); // XXX-CHANGE-XXX
     }
 
-    /** Clear the linked list */
-    public void clear()
-    {
+  /** Remove the element at an index in the list 
+   * @param index  where in the list to add
+   * @return element the data found
+   * @throws IndexOutOfBoundsException
+   */ 
+  public E remove(int index) throws IndexOutOfBoundsException
+  {
+    if (index<0 || index>=this.nelems)
+      throw new IndexOutOfBoundsException();
+    Node toRemove = this.getNth(index);
+    Node prev = toRemove.getPrev();
+    Node next = toRemove.getNext();
+    E element = toRemove.getElement();
+    prev.setNext(next);
+    next.setPrev(prev);
+    toRemove = null;
+    this.nelems--;
+    return element;
+  }
+
+  /** Clear the linked list */
+  public void clear()
+  {
+    while(!this.isEmpty())
+      this.remove(0);
+  }
+
+  /** Determine if the list empty 
+   *  @return true if empty, false otherwise */
+  public boolean isEmpty()
+  {
+    if (this.head.getNext()==this.tail && this.tail.getPrev()==this.head)
+      return true;
+    else
+      return false; // XXX-CHANGE-XXX
+  }
+
+  public Iterator<E> QQQiterator()
+  {
+    return new MyListIterator();
+  }
+  public ListIterator<E> QQQlistIterator()
+  {
+    return new MyListIterator();
+  }
+
+  // Helper method to get the Node at the Nth index
+  private Node getNth(int index) 
+  {
+    Node toCheck;
+    if (index>= nelems/2){
+      int count = this.nelems-1;
+      toCheck = this.tail.getPrev();
+      while(count!=index){
+        toCheck = toCheck.getPrev();
+        count--;
+      }
     }
-
-    /** Determine if the list empty 
-     *  @return true if empty, false otherwise */
-    public boolean isEmpty()
-    {
-        return true;  // XXX-CHANGE-XXX
+    else{
+      int count = 0;
+      toCheck = this.head.getNext();
+      while(count!=index){
+        toCheck =toCheck.getNext();
+        count++;
+      }
     }
+    return toCheck;
+  }
 
-	public Iterator<E> QQQiterator()
-	{
-	return new MyListIterator();
-	}
-	public ListIterator<E> QQQlistIterator()
-	{
-	return new MyListIterator();
-	}
+  // Helper method to remove the node at a given index
+  private boolean removeNode(int index){
+    return false;
+  }
+  
+  public static void main(String[] args){
+    MyLinkedList<Integer> list = new MyLinkedList<Integer>();
+    list.add(new Integer(30));
+    list.add(new Integer(30));
+    list.add(new Integer(30));
+    list.add(new Integer(30));
+    list.add(new Integer(50));
+    list.add(2, new Integer(15));
+    list.add(list.size(), new Integer(15));
+    list.remove(0);
+    list.remove(list.size()-1);
+    //list.rem
+    for (int i = 0; i<list.size(); i++)
+      System.out.println(list.get(i));
+    System.out.println(list.size());
+  }
 
-    // Helper method to get the Node at the Nth index
-    private Node getNth(int index) 
-    {
-        return (Node) null;  // XXX-CHANGE-XXX
-    }
 
-     
-                
-
-/*  UNCOMMENT the following when you believe your MyListIterator class is
-	functioning correctly
-	public Iterator<E> iterator()
-	{
-	return new MyListIterator();
-	}
-	public ListIterator<E> listIterator()
-	{
-	return new MyListIterator();
-	}
-*/
+  /*  UNCOMMENT the following when you believe your MyListIterator class is
+      functioning correctly
+      public Iterator<E> iterator()
+      {
+      return new MyListIterator();
+      }
+      public ListIterator<E> listIterator()
+      {
+      return new MyListIterator();
+      }
+   */
 }
 
 // VIM: set the tabstop and shiftwidth to 4 
