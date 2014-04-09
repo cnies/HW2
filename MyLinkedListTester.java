@@ -4,24 +4,23 @@
 * LOGIN: cs12sfl
 */
 import junit.framework.* ;
-import java.util.LinkedList;
-import java.util.ListIterator;
+import java.util.*;
 /**
- *  Title: class LinkedListTester
+ *  Title: class MyLinkedListTester
  *  Description: JUnit test class for LinkedList class
- *  @author Philip Papadopoulos
+ *  @author Christopher Nies
  *  @version 2.0 03-April-2014
  */
-public class LinkedListTester extends TestCase
+public class MyLinkedListTester extends TestCase
 {
-  private LinkedList<Integer> empty ;
-  private LinkedList<Integer> one ;
-  private LinkedList<Integer> several ;
-  private LinkedList<String>  slist ;
+  private MyLinkedList<Integer> empty ;
+  private MyLinkedList<Integer> one ;
+  private MyLinkedList<Integer> several ;
+  private MyLinkedList<String>  slist ;
   static final int DIM = 5;
   static final int FIBMAX = 30;
 
-  public LinkedListTester()
+  public MyLinkedListTester()
   {
     super() ;
   }
@@ -31,16 +30,16 @@ public class LinkedListTester extends TestCase
    */ 
   public void setUp()
   {
-    empty = new LinkedList<Integer>();
-    one = new LinkedList<Integer>();
+    empty = new MyLinkedList<Integer>();
+    one = new MyLinkedList<Integer>();
     one.add(0,new Integer(0));
-    several = new LinkedList<Integer>() ;
+    several = new MyLinkedList<Integer>() ;
     // List: 1,2,3,...,Dim
     for (int i = DIM; i > 0; i--)
     	several.add(0,new Integer(i));
 
     // List: "First","Last"
-    slist = new LinkedList<String>();
+    slist = new MyLinkedList<String>();
     slist.add(0,"First");
     slist.add(1,"Last");
   }
@@ -107,7 +106,7 @@ public class LinkedListTester extends TestCase
   public void testIteratorFibonacci()
   {
 
-	LinkedList<Integer> fib  = new LinkedList<Integer>();
+	MyLinkedList<Integer> fib  = new MyLinkedList<Integer>();
 	ListIterator<Integer> iter;
 	// List: 0 1 1 2 3 5 8 13 ... 
 	// Build the list with integers 1 .. FIBMAX
@@ -249,10 +248,13 @@ public class LinkedListTester extends TestCase
   public void testReturns(){
 	  Integer toCheck1 = several.set(0, new Integer(50));
 	  Integer toCheck2 = several.remove(0);
+	  for (int i=0; i<several.size(); i++){
+		  System.out.println(several.get(i));
+	  }
 	  assertEquals(toCheck1, new Integer(1));
 	  assertEquals(toCheck2, new Integer(50));
   }
-  
+
  /**tests the clear method */
  public void testClear(){
    several.clear();

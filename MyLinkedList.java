@@ -3,8 +3,8 @@
  * ID: A11393577
  * LOGIN: cs12sfl
  */
-
 import java.util.*;
+
 public class MyLinkedList<E> extends AbstractList<E> {
 
   private int nelems;
@@ -94,7 +94,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
       this.idx = 0;
       this.canRemove = false;
     }
-    @Override
+    //@Override
       public void add(E e) throws  NullPointerException
       {
         if (e == null)
@@ -102,10 +102,11 @@ public class MyLinkedList<E> extends AbstractList<E> {
         Node newNode = new Node(e, left, right);
         left.setNext(newNode);
         right.setPrev(newNode);
+        this.left = newNode;
         nelems++;
         canRemove = false;
       }
-    @Override
+    //@Override
       public boolean hasNext()
       {
         if (this.right != tail)
@@ -114,7 +115,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
           return false;
       }
 
-    @Override
+    //@Override
       public boolean hasPrevious()
       {
         if (this.left != head)
@@ -122,7 +123,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
         else
           return false;
       }
-    @Override
+    //@Override
       public E next() throws NoSuchElementException
       {
         if (!hasNext())
@@ -134,12 +135,12 @@ public class MyLinkedList<E> extends AbstractList<E> {
         this.canRemove = true;
         return left.getElement();
       }
-    @Override
+    //@Override
       public int nextIndex()
       {
         return idx;
       }
-    @Override
+    //@Override
       public E previous() throws NoSuchElementException
       {
         if (!hasPrevious())
@@ -152,12 +153,12 @@ public class MyLinkedList<E> extends AbstractList<E> {
         return right.getElement(); 
       }
 
-    @Override
+    //@Override
       public int previousIndex()
       {
         return idx-1;
       }
-    @Override
+    //@Override
       public void remove() throws IllegalStateException
       {
         if (!canRemove)
@@ -175,7 +176,8 @@ public class MyLinkedList<E> extends AbstractList<E> {
           right.setPrev(left);
         }
       }
-    @Override
+      
+    //@Override
       public void set(E e) throws NullPointerException, IllegalStateException
       {
         if(e == null)
@@ -273,8 +275,9 @@ public class MyLinkedList<E> extends AbstractList<E> {
       if (data == null)
         throw new NullPointerException();
       Node toChange = this.getNth(index);
+      E element = toChange.getElement();
       toChange.setElement(data);
-      return toChange.getElement(); // XXX-CHANGE-XXX
+      return element;
     }
 
   /** Remove the element at an index in the list 
@@ -300,8 +303,11 @@ public class MyLinkedList<E> extends AbstractList<E> {
   /** Clear the linked list */
   public void clear()
   {
-    while(!this.isEmpty())
-      this.remove(0);
+	  this.head.setNext(tail);
+	  this.tail.setPrev(head);
+    this.nelems = 0;
+    //while(!this.isEmpty())
+      //this.remove(0);
   }
 
   /** Determine if the list empty 
@@ -326,6 +332,8 @@ public class MyLinkedList<E> extends AbstractList<E> {
   // Helper method to get the Node at the Nth index
   private Node getNth(int index) 
   {
+	if(index<0 || index>=this.nelems)
+		throw new IndexOutOfBoundsException();
     Node toCheck;
     if (index>= nelems/2){
       int count = this.nelems-1;
@@ -346,11 +354,6 @@ public class MyLinkedList<E> extends AbstractList<E> {
     return toCheck;
   }
 
-  // Helper method to remove the node at a given index
-  private boolean removeNth(int index){
-    
-    return true;
-  }
   
   public static void main(String[] args){
     MyLinkedList<Integer> list = new MyLinkedList<Integer>();
@@ -370,8 +373,6 @@ public class MyLinkedList<E> extends AbstractList<E> {
   }
 
 
-  /*  UNCOMMENT the following when you believe your MyListIterator class is
-      functioning correctly
       public Iterator<E> iterator()
       {
       return new MyListIterator();
@@ -380,7 +381,6 @@ public class MyLinkedList<E> extends AbstractList<E> {
       {
       return new MyListIterator();
       }
-   */
 }
 
 // VIM: set the tabstop and shiftwidth to 4 
