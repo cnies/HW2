@@ -89,50 +89,105 @@ public class MyLinkedList<E> extends AbstractList<E> {
     // return 
     public MyListIterator()
     {
+      this.left = head;
+      this.right = head.getNext();
+      this.idx = 0;
+      this.canRemove = false;
     }
     @Override
       public void add(E e) throws  NullPointerException
       {
+        if (e == null)
+          throw new NullPointerException();
+        Node newNode = new Node(e, left, right);
+        left.setNext(newNode);
+        right.setPrev(newNode);
+        nelems++;
+        canRemove = false;
       }
     @Override
       public boolean hasNext()
       {
-        return false; // XXX-CHANGE-XXX
+        if (this.right != tail)
+          return true;
+        else
+          return false;
       }
 
     @Override
       public boolean hasPrevious()
       {
-        return false; // XXX-CHANGE-XXX
+        if (this.left != head)
+          return true;
+        else
+          return false;
       }
     @Override
       public E next() throws NoSuchElementException
       {
-        return (E) null;  // XXX-CHANGE-XXX
+        if (!hasNext())
+          throw new NoSuchElementException();
+        this.left = right;
+        this.right = right.getNext();
+        this.idx++;
+        this.forward = true;
+        this.canRemove = true;
+        return left.getElement();
       }
     @Override
       public int nextIndex()
       {
-        return 0; // XXX-CHANGE-XXX
+        return idx;
       }
     @Override
       public E previous() throws NoSuchElementException
       {
-        return (E) null; // XXX-CHANGE-XXX
+        if (!hasPrevious())
+          throw new NoSuchElementException();
+        this.right = left;
+        this.left = left.getPrev();
+        this.idx--;
+        this.forward = false;
+        this.canRemove = true;
+        return right.getElement(); 
       }
 
     @Override
       public int previousIndex()
       {
-        return 0;  // XXX-CHANGE-XXX
+        return idx-1;
       }
     @Override
       public void remove() throws IllegalStateException
       {
+        if (!canRemove)
+          throw new IllegalStateException();
+        if (forward){
+          canRemove = false;
+          right = right.getNext();
+          right.setPrev(left);
+          left.setNext(right);
+        }
+        else {
+          canRemove = false;
+          left = left.getPrev();
+          left.setNext(right);
+          right.setPrev(left);
+        }
       }
     @Override
-      public void set(E e) throws NullPointerException
+      public void set(E e) throws NullPointerException, IllegalStateException
       {
+        if(e == null)
+          throw new NullPointerException();
+        if (!canRemove)
+          throw new IllegalStateException();
+        if (forward){
+          left.setElement(e);
+        }
+        else{
+          right.setElement(e);
+        }
       }
 
   }
@@ -292,8 +347,9 @@ public class MyLinkedList<E> extends AbstractList<E> {
   }
 
   // Helper method to remove the node at a given index
-  private boolean removeNode(int index){
-    return false;
+  private boolean removeNth(int index){
+    
+    return true;
   }
   
   public static void main(String[] args){
