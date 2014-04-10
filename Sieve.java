@@ -1,5 +1,5 @@
 /**
-* Name: Christopher Nies
+* NAME: Christopher Nies
 * ID: A11393577
 * LOGIN: cs12sfl
 */
@@ -15,7 +15,7 @@ public class Sieve
 
 	private static int DEFAULTRANGE=100;
     /* change to false to use MyLinkedList instead of LinkedList*/
-	protected static boolean useJCF = true;
+	protected static boolean useJCF = false;
 
 	/** This is a factory class. 
     * It "manufactures" instances of other classes

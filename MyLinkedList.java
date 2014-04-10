@@ -1,5 +1,5 @@
 /**
- * Name: Christopher Nies
+ * NAME: Christopher Nies
  * ID: A11393577
  * LOGIN: cs12sfl
  */
@@ -37,6 +37,8 @@ public class MyLinkedList<E> extends AbstractList<E> {
     /** Remove this node from the link. Update previous and next nodes */
     public void remove()
     {
+      this.next.setPrev(this.prev);
+      this.prev.setNext(this.next);
       this.next = null;
       this.prev = null;  
     }
@@ -165,15 +167,20 @@ public class MyLinkedList<E> extends AbstractList<E> {
           throw new IllegalStateException();
         if (forward){
           canRemove = false;
-          right = right.getNext();
-          right.setPrev(left);
-          left.setNext(right);
+          //right.setPrev(left.getPrev());
+          //left.getPrev().setNext(right);
+          left = left.getPrev();
+          left.getNext().remove();
+          idx--;
+          nelems--;
         }
         else {
           canRemove = false;
-          left = left.getPrev();
-          left.setNext(right);
-          right.setPrev(left);
+          //left.setNext(right.getNext());
+          //right.getNext().setPrev(left);
+          right = right.getNext();
+          right.getPrev().remove();
+          nelems--;
         }
       }
       
@@ -357,19 +364,18 @@ public class MyLinkedList<E> extends AbstractList<E> {
   
   public static void main(String[] args){
     MyLinkedList<Integer> list = new MyLinkedList<Integer>();
+    list.add(new Integer(10));
+    list.add(new Integer(20));
     list.add(new Integer(30));
-    list.add(new Integer(30));
-    list.add(new Integer(30));
-    list.add(new Integer(30));
+    list.add(new Integer(40));
     list.add(new Integer(50));
     list.add(2, new Integer(15));
-    list.add(list.size(), new Integer(15));
-    list.remove(0);
-    list.remove(list.size()-1);
-    //list.rem
-    for (int i = 0; i<list.size(); i++)
+    ListIterator<Integer> iter  = list.listIterator();
+    iter.next();
+    iter.remove();
+    for (int i =0; i<list.size(); i++)
       System.out.println(list.get(i));
-    System.out.println(list.size());
+
   }
 
 
