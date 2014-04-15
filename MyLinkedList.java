@@ -216,7 +216,6 @@ public class MyLinkedList<E> extends AbstractList<E> {
   @Override
     public int size()
     {
-      // need to implement the size method
       return nelems;  
     }
 
@@ -297,12 +296,13 @@ public class MyLinkedList<E> extends AbstractList<E> {
     if (index<0 || index>=this.nelems)
       throw new IndexOutOfBoundsException();
     Node toRemove = this.getNth(index);
-    Node prev = toRemove.getPrev();
-    Node next = toRemove.getNext();
     E element = toRemove.getElement();
-    prev.setNext(next);
-    next.setPrev(prev);
-    toRemove = null;
+    toRemove.remove();
+    //Node prev = toRemove.getPrev();
+    //Node next = toRemove.getNext();
+    //prev.setNext(next);
+    //next.setPrev(prev);
+    //toRemove = null;
     this.nelems--;
     return element;
   }
@@ -373,8 +373,8 @@ public class MyLinkedList<E> extends AbstractList<E> {
     ListIterator<Integer> iter  = list.listIterator();
     iter.next();
     iter.remove();
-    for (int i =0; i<list.size(); i++)
-      System.out.println(list.get(i));
+    for (Integer i: list)
+      System.out.println(i);
 
   }
 
